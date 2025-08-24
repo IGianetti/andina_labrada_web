@@ -1,0 +1,64 @@
+/* src/components/Hero/Hero.module.css */
+.hero {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(17, 9, 26, 0.7), rgba(17, 9, 26, 0.7)), url('/images/banner-home.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Opcional: efecto parallax */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+  
+}
+
+.heroContent {
+  max-width: 800px;
+  padding: 20px;
+}
+
+.heroTitle {
+  font-size: 3.5em;
+  color: var(--golden-accent);
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.heroSubtitle {
+  font-size: 1.5em;
+  color: var(--andino-ochre);
+  margin-bottom: 2em;
+}
+
+.heroButton {
+  display: inline-block;
+  background-color: var(--golden-accent);
+  color: var(--primary-background);
+  padding: 15px 30px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.heroButton:hover {
+  background-color: var(--andino-ochre);
+  transform: scale(1.05);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5em;
+  }
+  .heroSubtitle {
+    font-size: 1.2em;
+  }
+  .heroButton {
+    padding: 12px 24px;
+    font-size: 1em;
+  }
+}

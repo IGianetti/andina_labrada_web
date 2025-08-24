@@ -1,0 +1,37 @@
+.galleryContainer {
+  padding: 50px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.galleryTitle {
+  text-align: center;
+  font-size: 3em;
+  color: var(--golden-accent);
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.gallerySubtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: var(--text-light);
+  margin-bottom: 2em;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 600px) {
+  .galleryTitle {
+    font-size: 2.5em;
+  }
+}

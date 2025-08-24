@@ -1,0 +1,26 @@
+/* Define la paleta de colores a nivel global */
+:root {
+  --primary-background: #11091a;
+  --secondary-background: #2f2f4d;
+  --text-light: #f8f6e9;
+  --text-dark: #626970;
+  --golden-accent: #e8d18e;
+  --andino-ochre: #bab195;
+  --silver-accent: #a9a9a9; 
+}
+
+/* Reglas de reinicio de estilos básicas */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+/* Nota: Las reglas para body y #root se moverán a App.css */

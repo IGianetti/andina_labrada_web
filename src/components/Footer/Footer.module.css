@@ -1,0 +1,31 @@
+.footer {
+  padding: 2rem;
+  background-color: #11091a; /* secondaryBackground */
+  text-align: center;
+  color: #a9a9a9; /* silverAccent */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.socialLinks {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.socialIcon {
+  color: #a9a9a9; /* silverAccent */
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.socialIcon:hover {
+  color: #e8d18e; /* goldenAccent */
+  transform: scale(1.1);
+}
+
+.copyright {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #626970; /* darkGrey */
+}

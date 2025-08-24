@@ -1,0 +1,24 @@
+.contactContainer {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contactTitle {
+  text-align: center;
+  font-size: 3em;
+  color: var(--golden-accent);
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contactSubtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: var(--text-light);
+  margin-bottom: 2em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}

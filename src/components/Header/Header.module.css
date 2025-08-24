@@ -1,0 +1,54 @@
+/* src/components/Header/Header.module.css */
+.header {
+  padding: 1.5rem 2rem;
+  background-color: #2f2f4d; /* secondaryBackground */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: 0;
+  color: #bab195; /* andinoOchre */
+  letter-spacing: 2px;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  color: #a9a9a9; /* silverAccent */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+}
+
+.navLink:hover {
+  color: #e8d18e; /* goldenAccent */
+  transform: scale(1.05);
+}
+
+.activeLink {
+  composes: navLink; /* Hereda los estilos base */
+  color: #e8d18e; /* goldenAccent */
+  border-bottom: 2px solid #e8d18e; /* Subrayado para la página activa */
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  .nav {
+    justify-content: center;
+    gap: 1.2rem;
+  }
+}

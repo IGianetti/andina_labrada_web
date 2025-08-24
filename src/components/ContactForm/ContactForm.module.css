@@ -1,0 +1,65 @@
+/* src/components/ContactForm/ContactForm.module.css */
+.contactForm {
+  background-color: var(--secondary-background);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  color: var(--golden-accent);
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.formInput,
+.formTextarea {
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid var(--text-dark);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--text-light);
+  transition: border-color 0.3s ease;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--golden-accent);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.submitButton {
+  background-color: var(--golden-accent);
+  color: var(--primary-background);
+  border: none;
+  padding: 15px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: var(--andino-ochre);
+}
+
+.errorMessage {
+  color: #ff6347; /* Un color de error claro */
+  font-size: 0.9em;
+  margin-top: 5px;
+}

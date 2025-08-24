@@ -1,0 +1,41 @@
+.galleryItem {
+  background-color: var(--secondary-background);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galleryItem:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.itemImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.itemInfo {
+  padding: 15px;
+  text-align: center;
+}
+
+.itemInfo h3 {
+  font-size: 1.5em;
+  color: var(--andino-ochre); /* Se cambia de dorado a ocre */
+  margin-bottom: 5px;
+}
+
+.itemInfo p {
+  font-size: 0.9em;
+  color: var(--text-dark); /* Color de texto más sutil */
+  margin-bottom: 10px;
+}
+
+.itemInfo span {
+  font-weight: bold;
+  color: var(--golden-accent); /* El precio se mantiene en dorado */
+}
