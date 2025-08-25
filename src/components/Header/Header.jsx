@@ -1,11 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styles from './Header.module.css'
+import logo from '/images/andina-logo-4.png'
 function Header() {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        <h1>Karina Orfebrería</h1>
-      </div>
+       <Link to="/">
+      <img src={logo} alt="Andina Labrada Orfebrería" className={styles.logo} />
+    </Link>
       <nav className={styles.nav}>
         <NavLink to="/" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
           Inicio

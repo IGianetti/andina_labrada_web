@@ -8,7 +8,7 @@ function Footer() {
         <a href="https://www.instagram.com/andinalabrada/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
           <FaInstagram />
         </a>
-        <a href="https://www.tiktok.com/@tu_usuario_tiktok" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+        <a href="https://www.tiktok.com/@andinalabrada" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
           <FaTiktok />
         </a>
         <a href="https://www.youtube.com/channel/tu_canal_youtube" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>

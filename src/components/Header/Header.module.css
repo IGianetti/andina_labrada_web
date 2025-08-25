@@ -8,12 +8,46 @@
   flex-wrap: wrap;
 }
 
-.logo h1 {
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin: 0;
-  color: #bab195; /* andinoOchre */
-  letter-spacing: 2px;
+.logoContainer {
+    width: 25%; /* Ajusta este valor según el porcentaje deseado */
+    height: 25%;
+}
+
+/*.logo {
+    width: 20%;
+    height: auto;
+    object-fit: contain;
+}*/
+
+.logo {
+  max-width: 150px;
+  height: auto;
+}
+
+.logoTextMobile {
+  display: none; /* Oculta el texto por defecto */
+  font-size: 1.5em; /* Tamaño de fuente para el texto */
+  color: var(--golden-accent); /* Color del texto */
+  text-transform: uppercase;
+}
+
+/* Oculta el logo y muestra el texto en pantallas de 600px o menos */
+@media (max-width: 600px) {
+  .logo {
+    display: none; /* Oculta la imagen del logo */
+  }
+
+  .logoTextMobile {
+    display: block; /* Muestra el texto */
+  }
+
+  /* Aseguramos que el logoTextMobile esté centrado si no hay otros elementos */
+  .logoLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .nav {
@@ -41,6 +75,7 @@
   border-bottom: 2px solid #e8d18e; /* Subrayado para la página activa */
 }
 
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -51,4 +86,18 @@
     justify-content: center;
     gap: 1.2rem;
   }
+}
+
+/* Para pantallas más pequeñas (ej. tablets) */
+@media (max-width: 768px) {
+    .logoContainer {
+        width: 150px;
+    }
+}
+
+/* Para pantallas aún más pequeñas (ej. móviles) */
+@media (max-width: 480px) {
+    .logoContainer {
+        width: 120px;
+    }
 }
