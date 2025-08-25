@@ -1,41 +1,34 @@
 .galleryItem {
-  background-color: var(--secondary-background);
+  border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .galleryItem:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .itemImage {
   width: 100%;
-  height: 250px;
+  height: 250px; /* Puedes ajustar la altura para que todas las imágenes tengan el mismo tamaño */
   object-fit: cover;
-  display: block;
 }
 
-.itemInfo {
+.itemDetails {
   padding: 15px;
   text-align: center;
 }
 
-.itemInfo h3 {
-  font-size: 1.5em;
-  color: var(--andino-ochre); /* Se cambia de dorado a ocre */
-  margin-bottom: 5px;
+.itemDetails h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
 }
 
-.itemInfo p {
-  font-size: 0.9em;
-  color: var(--text-dark); /* Color de texto más sutil */
-  margin-bottom: 10px;
-}
-
-.itemInfo span {
+.itemPrice {
   font-weight: bold;
-  color: var(--golden-accent); /* El precio se mantiene en dorado */
+  color: #555;
+  font-size: 1rem;
 }

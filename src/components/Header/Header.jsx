@@ -1,11 +1,12 @@
 import { NavLink, Link } from 'react-router-dom';
 import styles from './Header.module.css'
-import logo from '/images/andina-logo-4.png'
+import logo from '/images/andina-logo.png'
 function Header() {
   return (
     <header className={styles.header}>
        <Link to="/">
       <img src={logo} alt="Andina Labrada Orfebrería" className={styles.logo} />
+       <h2 className={styles.logoTextMobile}>Andina Labrada</h2>
     </Link>
       <nav className={styles.nav}>
         <NavLink to="/" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
