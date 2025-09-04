@@ -1,4 +1,4 @@
-import { db, functions } from '../firebase/firebase.js';
+import { db, functions } from '../firebase/firebase';
 import { doc, getDoc} from 'firebase/firestore';
 import { httpsCallable } from 'firebase/functions'
 
@@ -19,7 +19,7 @@ export const getConfig = async (docId) => {
       return null;
     }
   } catch (error) {
-    console.error("Error al obtener la configuración:", error);
+    console.error("Error al obtener la configuración: ", error);
     return null;
   }
 };
