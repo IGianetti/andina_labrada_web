@@ -1,10 +1,9 @@
-/* src/App.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 html, body {
   height: 100%;
 }
-
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -13,6 +12,7 @@ body {
   background-color: var(  --andino-ochre); /* Usa la variable */
   color: var(--text-light); /* Usa la variable */
   overflow-x: hidden;
+  
 }
 
 #root {

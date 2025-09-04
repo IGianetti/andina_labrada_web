@@ -1,45 +1,40 @@
+/* Header.module.css */
+
 .header {
-  padding: 0; /* Quitamos el padding del header principal para que la capa de vidrio ocupe todo */
+  padding: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
-  justify-content: center; /* Centramos el contenido dentro del header */
+  justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 1000;
-  /*overflow: hidden;*/
 }
 
 .headerGlassLayer {
   width: 100%;
   height: 100%;
-  padding: 1rem 2rem; /* El padding se aplica a esta capa de vidrio */
-  display: flex; /* Para controlar el contenido interno */
-  justify-content: space-between;
-  align-items: center;
-  
-  /* --- Efecto "Vidrio Esmerilado" (Glassmorphism) --- */
-  background-color: rgba(47, 47, 77, 0.4); /* Fondo semi-transparente */
-  backdrop-filter: blur(5px); /* Desenfoque */
-  -webkit-backdrop-filter: blur(5px); /* Compatibilidad con Safari */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombreado para profundidad */
-  /* ------------------------------------------------ */
-  z-index: 1; /* Esta capa está sobre el background del header */
-}
-
-.headerContent {
-  
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* Ocupa todo el ancho dentro de su padre */
+  background-color: rgba(47, 47, 77, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 
-
 .logoContainer {
-  flex-shrink: 0; /* Evita que el logo se encoja en pantallas pequeñas */
+  flex-shrink: 0;
 }
 
 .logo {
@@ -52,20 +47,22 @@
   transform: scale(1.05);
 }
 
+/* Oculta el ícono de hamburguesa en escritorio */
 .menuIcon {
-  display: none; /* Oculto por defecto en desktop */
+  display: none;
   cursor: pointer;
   font-size: 1.5rem;
   color: var(--golden-accent);
-  z-index: 1001; /* Siempre encima del menú para poder cerrarlo */
 }
 
+/* En escritorio, la navegación siempre está visible y en flex */
 .nav {
   display: flex;
   gap: 2rem;
-  transition: transform 0.3s ease-in-out;
   flex-basis: 100%;
-  justify-content: flex-end; /* Alinea los enlaces a la derecha */
+  justify-content: flex-end;
+  opacity: 1; /* Aseguramos la visibilidad */
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav ul {
@@ -103,28 +100,30 @@
     flex-wrap: nowrap;
   }
 
+  /* Muestra el ícono del menú hamburguesa */
   .menuIcon {
-    display: block; /* Muestra el ícono del menú hamburguesa */
+    display: block;
   }
 
+  /* Oculta el menú por defecto en móviles */
   .nav {
-    position: fixed;
-    top: 100%;
-    left: 0;
-    width: 100%;    
-    height: calc(100vh - var(--altura-del-header)); 
-    z-index: 100;
-    background-color: var(--secondary-background);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateX(100%); /* Oculta el menú a la derecha */
-    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--secondary-background);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
   }
 
+  /* La clase `navOpen` lo hace visible */
   .navOpen {
-    transform: translateX(0); /* Muestra el menú deslizándolo desde la derecha */
+    display: flex;
   }
 
   .nav ul {

@@ -12,15 +12,8 @@
   align-items: center;
   font-size: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: scale(0);
-  opacity: 0;
-}
-
-.whatsappButton.visible {
-  transform: scale(1);
-  opacity: 1;
+  z-index: 10000;  
+  transition: transform 0.3s ease-in-out; /* Mantenemos la transición del hover */
 }
 
 .whatsappButton:hover {
