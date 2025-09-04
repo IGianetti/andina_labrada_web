@@ -1,35 +1,46 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { getConfig } from '../../services/firebaseService';
 import styles from './AboutPage.module.css';
 
 function AboutPage() {
-  return (
+  const [aboutData, setAboutData] = useState({ historia: '', imagenUrl: '' });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const data = await getConfig("sobreMi");
+        if (data) {
+          setAboutData({
+            historia: data.historia || 'No hay texto disponible.',
+            imagenUrl: data.imagenUrl || ''
+          });
+        }
+      } catch (error) {
+        console.error("Error al obtener datos de 'Sobre Mí': ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAboutData();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando información...</p>;
+  }
+
+
+return (
     <section className={styles.aboutContainer}>
       <h1 className={styles.aboutTitle}>Sobre Mí</h1>
       <div className={styles.aboutContent}>
-        <div className={styles.imageWrapper}>
-          <img
-            src="/images/karina-profile.jpg" // Reemplaza con una foto real de Karina
-            alt="Karina, la orfebre"
-            className={styles.profileImage}
-          />
-        </div>
-        <div className={styles.textWrapper}>
-          <p>
-            Karina es una orfebre apasionada por la conexión entre el arte ancestral y la modernidad.
-            Cada una de sus piezas es el resultado de un viaje de autodescubrimiento, donde combina
-            técnicas tradicionales andinas con un diseño minimalista y contemporáneo.
-          </p>
-          <p>
-            Su amor por la naturaleza, los minerales y la historia de los pueblos originarios de
-            Latinoamérica se refleja en cada curva y cada textura de sus creaciones. Para ella, la
-            orfebrería no es solo un oficio, sino una forma de honrar el legado de sus ancestros y de
-            plasmar su propia historia en metal.
-          </p>
-          <p>
-            Trabaja principalmente con cobre y plata, valorando la autenticidad y la nobleza de estos
-            materiales. Cree firmemente que cada joya debe contar una historia, resonar con la esencia de
-            quien la porta y trascender el tiempo.
-          </p>
+        {aboutData.imagenUrl && (
+          <div className={styles.aboutImageContainer}>
+            <img src={aboutData.imagenUrl} alt="Karina de Andina Labrada" className={styles.aboutImage} />
+          </div>
+        )}
+        <div className={styles.aboutText}>
+          <p>{aboutData.historia}</p>
         </div>
       </div>
     </section>
