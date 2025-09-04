@@ -27,5 +27,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Firebase Credentials
-src/firebase/firebase.js
