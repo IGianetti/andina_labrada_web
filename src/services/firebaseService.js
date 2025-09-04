@@ -1,7 +1,7 @@
-import { db } from '../firebase/firebase';
+import { db, functions } from '../firebase/firebase.js';
 import { doc, getDoc} from 'firebase/firestore';
 import { httpsCallable } from 'firebase/functions'
-import { functions } from '../firebase/firebase'
+
 
 /**
  * Obtiene un documento de la colección 'configuracion'.
