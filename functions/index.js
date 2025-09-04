@@ -4,31 +4,27 @@ const cors = require('cors')({ origin: true });
 
 admin.initializeApp();
 
-exports.getGalleryItems = functions.https.onRequest((req, res) => {
-
-  cors(req, res, async () => {
-    if (req.method !== 'GET') {
-      return res.status(405).send('Method Not Allowed');
+exports.getGalleryItems = functions.https.onCall(async (data, context) => {
+  try {
+    const galleryCollection = admin.firestore().collection("galeria");
+    const snapshot = await galleryCollection.get();
+    
+    if (snapshot.empty) {
+      console.log("No matching documents.");
+      return [];
     }
-
-    try {
-      const db = admin.firestore();
-      const galeriaRef = db.collection('galeria');
-      const snapshot = await galeriaRef.get();
-
-      if (snapshot.empty) {
-        return res.status(404).json({ message: 'No se encontraron items en la galería.' });
-      }
-
-      const items = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-
-      res.status(200).json(items);
-    } catch (error) {
-      console.error("Error al obtener los documentos: ", error);
-      res.status(500).send("Error interno del servidor.");
-    }
-  });
+    
+    const items = [];
+    snapshot.forEach((doc) => {
+      items.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Devolvemos los datos directamente
+    return items;
+    
+  } catch (error) {
+    console.error("Error al obtener la galería:", error);
+    // Lanzamos un error de HTTPS para que el frontend lo capture
+    throw new functions.https.HttpsError("internal", "Error al obtener la galería.");
+  }
 });

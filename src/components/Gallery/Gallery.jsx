@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import GalleryItem from '../GalleryItem/GalleryItem'; 
+import { getGalleryItems } from '../../services/firebaseService';
 import styles from './Gallery.module.css';
 
 function Gallery() {
@@ -9,12 +10,10 @@ function Gallery() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_GALLERY_API_URL);
-        if (!response.ok) {
-          throw new Error('No se pudo obtener la galería.');
+        const data = await getGalleryItems();
+        if (data) {
+          setItems(data);
         }
-        const data = await response.json();
-        setItems(data);
       } catch (error) {
         console.error("Error al obtener documentos: ", error);
       } finally {

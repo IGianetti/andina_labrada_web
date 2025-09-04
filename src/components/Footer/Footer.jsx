@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaInstagram, FaTiktok, FaYoutube, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { getConfig } from '../../services/firebaseService';
 import styles from './Footer.module.css';
 
 
 function Footer() {
- 
+  const [horarioAtencion, setHorarioAtencion] = useState('');
   const currentYear = new Date().getFullYear();
 
-
+  useEffect(() => {
+    const fetchAtencion = async () => {
+      const atencionData = await getConfig("atencion");
+      if (atencionData) {
+        setHorarioAtencion(atencionData.horarioAtencion);
+      }
+    };
+    fetchAtencion();
+  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -31,6 +40,9 @@ function Footer() {
           <p><FaMapMarkerAlt /> Dirección: Av. Bruix, Ciudad Autonoma de Buenos Aires</p>
           <p><FaPhone /> Teléfono: 155444444</p>
           <p><FaEnvelope /> Email: andinalabrada@gmail.com</p>
+           {horarioAtencion && (
+            <p>Horario de atención por WhatsApp: {horarioAtencion}</p>
+          )}
         </div>
 
         {/* Redes Sociales */}

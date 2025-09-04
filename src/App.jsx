@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage/AboutPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import WhatsAppButton from './components/WhatsAppButton/WhatsAppButton';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           </Routes>
         </main>
       <Footer/>
+      <WhatsAppButton />
     
    </>
 
