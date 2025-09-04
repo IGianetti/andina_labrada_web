@@ -1,103 +1,132 @@
-/* src/components/Header/Header.module.css */
 .header {
-  padding: 1.5rem 2rem;
-  background-color: #2f2f4d; /* secondaryBackground */
+  padding: 0; /* Quitamos el padding del header principal para que la capa de vidrio ocupe todo */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center; /* Centramos el contenido dentro del header */
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.headerGlassLayer {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 2rem; /* El padding se aplica a esta capa de vidrio */
+  display: flex; /* Para controlar el contenido interno */
+  justify-content: space-between;
+  align-items: center;
+  
+  /* --- Efecto "Vidrio Esmerilado" (Glassmorphism) --- */
+  background-color: rgba(47, 47, 77, 0.4); /* Fondo semi-transparente */
+  backdrop-filter: blur(5px); /* Desenfoque */
+  -webkit-backdrop-filter: blur(5px); /* Compatibilidad con Safari */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombreado para profundidad */
+  /* ------------------------------------------------ */
+  z-index: 1; /* Esta capa está sobre el background del header */
+}
+
+.headerContent {
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  width: 100%; /* Ocupa todo el ancho dentro de su padre */
 }
+
+
 
 .logoContainer {
-    width: 25%; /* Ajusta este valor según el porcentaje deseado */
-    height: 25%;
+  flex-shrink: 0; /* Evita que el logo se encoja en pantallas pequeñas */
 }
-
-/*.logo {
-    width: 20%;
-    height: auto;
-    object-fit: contain;
-}*/
 
 .logo {
   max-width: 150px;
   height: auto;
+  transition: transform 0.3s ease;
 }
 
-.logoTextMobile {
-  display: none; /* Oculta el texto por defecto */
-  font-size: 1.5em; /* Tamaño de fuente para el texto */
-  color: var(--golden-accent); /* Color del texto */
-  text-transform: uppercase;
+.logo:hover {
+  transform: scale(1.05);
 }
 
-/* Oculta el logo y muestra el texto en pantallas de 600px o menos */
-@media (max-width: 600px) {
-  .logo {
-    display: none; /* Oculta la imagen del logo */
-  }
-
-  .logoTextMobile {
-    display: block; /* Muestra el texto */
-  }
-
-  /* Aseguramos que el logoTextMobile esté centrado si no hay otros elementos */
-  .logoLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+.menuIcon {
+  display: none; /* Oculto por defecto en desktop */
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--golden-accent);
+  z-index: 1001; /* Siempre encima del menú para poder cerrarlo */
 }
 
 .nav {
   display: flex;
   gap: 2rem;
-  flex-wrap: wrap;
+  transition: transform 0.3s ease-in-out;
+  flex-basis: 100%;
+  justify-content: flex-end; /* Alinea los enlaces a la derecha */
 }
 
-.navLink {
-  color: #a9a9a9; /* silverAccent */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.nav li {
+  font-size: 1.2rem;
+}
+
+.nav a {
+  color: var(--silver-accent);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease, transform 0.2s ease;
-  font-size: 1rem;
 }
 
-.navLink:hover {
-  color: #e8d18e; /* goldenAccent */
+.nav a:hover,
+.nav a.activeLink {
+  color: var(--golden-accent);
+  border-bottom: 2px solid var(--golden-accent);
   transform: scale(1.05);
 }
 
-.activeLink {
-  composes: navLink; /* Hereda los estilos base */
-  color: #e8d18e; /* goldenAccent */
-  border-bottom: 2px solid #e8d18e; /* Subrayado para la página activa */
-}
+/* ---------------------------------------------------------------------------------------------------------- */
 
-
+/* Estilos para Tabletas y Móviles */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
+    flex-wrap: nowrap;
   }
+
+  .menuIcon {
+    display: block; /* Muestra el ícono del menú hamburguesa */
+  }
+
   .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-background);
+    flex-direction: column;
     justify-content: center;
-    gap: 1.2rem;
+    align-items: center;
+    transform: translateX(100%); /* Oculta el menú a la derecha */
+    transition: transform 0.3s ease-in-out;
   }
-}
 
-/* Para pantallas más pequeñas (ej. tablets) */
-@media (max-width: 768px) {
-    .logoContainer {
-        width: 150px;
-    }
-}
+  .navOpen {
+    transform: translateX(0); /* Muestra el menú deslizándolo desde la derecha */
+  }
 
-/* Para pantallas aún más pequeñas (ej. móviles) */
-@media (max-width: 480px) {
-    .logoContainer {
-        width: 120px;
-    }
+  .nav ul {
+    flex-direction: column;
+    gap: 3rem;
+  }
 }

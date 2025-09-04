@@ -1,21 +1,20 @@
 .aboutContainer {
   padding: 50px 50px;
-  max-width: auto; 
-  margin: 25px;
+  max-width: 1200px; /* Limita el ancho del contenido para mejor lectura */
+  margin: 25px auto; /* Centra el contenedor en la página */
   background-color: var(--primary-background); /* Fondo oscuro */
   color: var(--text-light); /* Letras claras */
   min-height: calc(100vh - (91.2px + 138.6px));
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align:start;
+  justify-content: flex-start; /* Alinea el contenido al inicio del contenedor */
+  text-align: center; /* Centra el título, el texto general puede ir al inicio */
 }
 
 .aboutTitle {
-  text-align: center;
   font-size: 3em;
-  color: var(--golden-accent); /* Acento dorado */
+  color: var(--golden-accent); 
   margin-bottom: 1.5em;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -23,37 +22,57 @@
 
 .aboutContent {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Por defecto, apilado en móviles */
   align-items: center;
   gap: 40px;
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  max-width: 900px; /* Limita el ancho del contenido interno */
 }
 
-.imageWrapper {
-  flex: 1;
-  max-width: 500px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.profileImage {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.textWrapper {
-  flex: 1.5;
+.aboutImageContainer {
+  flex-shrink: 0; /* Previene que la imagen se encoja */
+  width: 300px; /* El tamaño fijo de la imagen */
+  height: 300px; /* El tamaño fijo de la imagen */
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  line-height: 1.8;
-  color: var(--text-light); /* Texto claro */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Asegura que el contenedor también sea redondo para un mejor recorte */
+  overflow: hidden; /* Recorta lo que se salga del borde redondo */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
 }
 
+.aboutImage {
+  width: 100%; /* La imagen ocupa todo el contenedor */
+  height: 100%; /* La imagen ocupa todo el contenedor */
+  object-fit: cover; /* Recorta la imagen para que cubra el espacio sin distorsionarse */
+}
+
+.aboutText {
+  flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+  text-align: justify; /* Justifica el texto para una mejor lectura */
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+/* Estilos para pantallas grandes (desktop) */
 @media (min-width: 992px) {
   .aboutContent {
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: row; /* En pantallas grandes, se distribuyen en fila */
+    align-items: flex-start; /* Alinea la parte superior de imagen y texto */
+    text-align: left; /* Alinea el texto a la izquierda en desktop */
+  }
+
+  .aboutImageContainer {
+    width: 40%; /* Imagen ocupa el 40% del ancho en desktop */
+    max-width: 300px; /* Máximo ancho de la imagen */
+    margin-right: 30px; /* Espacio entre imagen y texto */
+  }
+
+  .aboutText {
+    width: 60%; /* Texto ocupa el 60% del ancho en desktop */
+  }
+
+  .aboutTitle {
+    text-align: left; /* Centra el título en pantallas grandes */
   }
 }

@@ -35,7 +35,7 @@ return (
       <h1 className={styles.aboutTitle}>Sobre Mí</h1>
       <div className={styles.aboutContent}>
         {aboutData.imagenUrl && (
-          <div className={styles.aboutImageContainer}>
+          <div className={styles.aboutImageContainer}> {/* <-- ¡Aquí va la clase! */}
             <img src={aboutData.imagenUrl} alt="Karina de Andina Labrada" className={styles.aboutImage} />
           </div>
         )}

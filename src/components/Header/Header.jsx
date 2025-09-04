@@ -1,59 +1,80 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { db } from '../../firebase/firebase'; 
-import { doc, getDoc } from "firebase/firestore"; 
-
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { getConfig } from '../../services/firebaseService';
 import styles from './Header.module.css';
 
 function Header() {
+  const [navOpen, setNavOpen] = useState(false);
+  const [mostrarServicios, setMostrarServicios] = useState(false);
   const [logoUrl, setLogoUrl] = useState('');
+  const [headerBgImage, setHeaderBgImage] = useState('');
+
+  const toggleNav = () => {
+    setNavOpen(!navOpen);
+  };
 
   useEffect(() => {
-    const fetchLogoUrl = async () => {
+    const fetchConfiguracion = async () => {
       try {
-        const docRef = doc(db, "configuracion", "logo");
-        const docSnap = await getDoc(docRef);
+        const [logoData, navegacionData] = await Promise.all([
+          getConfig("logo"),
+          getConfig("navegacion")
+        ]);
 
-        if (docSnap.exists()) {
-          setLogoUrl(docSnap.data().urlLogo); 
-        } else {
-          console.log("No se encontró el documento del logo en Firestore.");
+        if (logoData) {
+          setLogoUrl(logoData.urlLogo);
+        }
+        if (navegacionData) {
+          setMostrarServicios(navegacionData.mostrarServicios);
+          setHeaderBgImage(navegacionData.headerBgImage || '');
         }
       } catch (error) {
-        console.error("Error al obtener el logo desde Firestore: ", error);
+        console.error("Error al obtener la configuración:", error);
       }
     };
-
-    fetchLogoUrl();
+    fetchConfiguracion();
   }, []);
 
   return (
-    <header className={styles.header}>
-      <Link to="/">
-        {logoUrl ? (
-          <img src={logoUrl} alt="Andina Labrada Orfebrería" className={styles.logo} />
-        ) : (
-          <p>Cargando logo...</p>
-        )}
-        <h2 className={styles.logoTextMobile}>Andina Labrada</h2>
-      </Link>
-      <nav className={styles.nav}>
-        <NavLink to="/" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-          Inicio
-        </NavLink>
-        <NavLink to="/about" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-          Sobre Mí
-        </NavLink>
-        <NavLink to="/gallery" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-          Galería
-        </NavLink>
-        <NavLink to="/services" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-          Servicios
-        </NavLink>
-        <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-          Contacto
-        </NavLink>
-      </nav>
+    <header
+      className={styles.header}
+      style={headerBgImage ? { backgroundImage: `url(${headerBgImage})` } : {}}
+    >
+      {/* Nueva capa de vidrio */}
+      <div className={styles.headerGlassLayer}>
+        {/* Contenido del Header (Logo, Menú, etc.) */}
+        <div className={styles.headerContent}>
+          {/* Logo */}
+          <div className={styles.logoContainer}>
+            <Link to="/">
+              {logoUrl ? (
+                <img src={logoUrl} alt="Andina Labrada Logo" className={styles.logo} />
+              ) : (
+                <span>Andina Labrada</span>
+              )}
+            </Link>
+          </div>
+
+          {/* Botón del Menú Hamburguesa */}
+          <div className={styles.menuIcon} onClick={toggleNav}>
+            {navOpen ? <FaTimes /> : <FaBars />}
+          </div>
+
+          {/* Navegación */}
+          <nav className={`${styles.nav} ${navOpen ? styles.navOpen : ''}`}>
+            <ul>
+              <li><Link to="/" onClick={toggleNav}>Inicio</Link></li>
+              <li><Link to="/gallery" onClick={toggleNav}>Galería</Link></li>
+              {mostrarServicios && (
+                <li><Link to="/services" onClick={toggleNav}>Servicios</Link></li>
+              )}
+              <li><Link to="/about" onClick={toggleNav}>Sobre Mí</Link></li>
+              <li><Link to="/contact" onClick={toggleNav}>Contacto</Link></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }
