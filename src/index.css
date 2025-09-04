@@ -7,6 +7,8 @@
   --golden-accent: #e8d18e;
   --andino-ochre: #bab195;
   --silver-accent: #a9a9a9; 
+/* Ajusta este valor a la altura real del header en móviles */
+  --altura-del-header: 80px; 
 }
 
 /* Reglas de reinicio de estilos básicas */
